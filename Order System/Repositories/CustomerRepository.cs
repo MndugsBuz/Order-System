@@ -25,9 +25,33 @@ namespace Order_System.Repositories
             return customers;
         }
 
-        public List<Customer> Delete()
+        public List<Customer> AddCustomer()
+        {
+            Console.WriteLine("[1] Customer Id");
+            string customerId = Console.ReadLine();
+            Console.WriteLine("[2] Customer Name");
+            string customerName = (Console.ReadLine());
+            Console.WriteLine("[3] Customer Payment Amount");
+            double customerPaymentAmount = double.Parse(Console.ReadLine());
+            Console.WriteLine("[4] Customer Payment Conditions (number of days)");
+            int customerPaymentConditions = int.Parse(Console.ReadLine());
+            customers.Add(new Customer(customerId, customerName, customerPaymentAmount, customerPaymentConditions));
+
+            foreach (var items in customers)
+            {
+                Console.Write(items.CustomerId + "|");
+                Console.Write(items.CustomerName + "|");
+                Console.Write(items.CustomerPaymentAmount + "|");
+                Console.Write(items.CustomerPaymentConditions + "|ADDCustomer");
+                Console.WriteLine();
+            }
+            return customers;
+        }
+
+        public List<Customer> DeteleCustomer()
         {
             return customers;
         }
     }
+
 }

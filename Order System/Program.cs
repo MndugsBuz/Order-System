@@ -9,17 +9,22 @@ using Newtonsoft.Json;
 using Order_System.Repositories;
 using Order_System;
 
-Console.WriteLine("Order System");
+Console.WriteLine("Orders System");
 
-OrdersRepository writeOrderToJson = new OrdersRepository();
-var resultwrite = writeOrderToJson.WriteToJson();
+OrdersRepository writeOrdersToJson = new OrdersRepository();
+var resultwrite = writeOrdersToJson.WriteToJson();
 
-OrdersRepository readOrderFromJson = new OrdersRepository();
-var resultread = readOrderFromJson.ReadFromJson();
+OrdersRepository readOrdersFromJson = new OrdersRepository();
+var resultread = readOrdersFromJson.ReadFromJson();
 
 InterfacePrint print = new InterfacePrint();
 print.menuOptions();
 print.menuControl();
+
+OrdersRepository writeOrdersToJson2 = new OrdersRepository();
+var resultwrite2 = writeOrdersToJson.WriteToJson();
+
+string orderdate = Console.ReadLine();
 
 
 

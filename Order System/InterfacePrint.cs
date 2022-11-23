@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Order_System.Repositories;
+using Order_System.Entities;
 
 namespace Order_System
 {
@@ -32,18 +35,11 @@ namespace Order_System
                             Console.WriteLine("Menu:[1] Customer");
                             Console.WriteLine("Menu:[1] [1] New Customer; [2] Delete Customer");
                             int customerAction = int.Parse(Console.ReadLine());
-
+                            CustomerRepository customerRepository = new CustomerRepository();
                             switch (customerAction)
                             {
                                 case 1:
-                                    Console.WriteLine("[1] Customer Id");
-                                    string customerId = Console.ReadLine();
-                                    Console.WriteLine("[2] Customer Name");
-                                    int customerName = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[3] Customer Payment Amount");
-                                    int customerPaymentAmount = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[4] Customer Payment Conditions");
-                                    int customerPaymentConditions = int.Parse(Console.ReadLine());
+                                    customerRepository.AddCustomer();
                                     break;
                                 case 2:
                                     Console.WriteLine("[2] Enter Customer Id to Delete");
@@ -62,26 +58,19 @@ namespace Order_System
                             Console.WriteLine("Menu:[2] Order");
                             Console.WriteLine("Menu:[2] [1] New Order; [2] Delete Order");
                             int orderAction = int.Parse(Console.ReadLine());
+                            OrdersRepository ordersRepository = new OrdersRepository();
                             switch (orderAction)
                             {
                                 case 1:
-                                    Console.WriteLine("[1] Customer Id");
-                                    string customerId = Console.ReadLine();
-                                    Console.WriteLine("[2] Order Number");
-                                    int orderNumber = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[3] Order date");
-                                    int orderdate = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[4] Order Amount");
-                                    int orderAmount = int.Parse(Console.ReadLine());
-                                    break;
+                                     ordersRepository.AddOrder();
+                                     break;
                                 case 2:
-                                    Console.WriteLine("[2] Enter Order number to Delete");
-                                    string ordernumberDelete = (Console.ReadLine());
+                                     ordersRepository.DeleteOrder();
                                     break;
                                 default:
                                     {
-                                        Console.WriteLine("Choosen wrong parameter");
-                                        break;
+                                     Console.WriteLine("Choosen wrong parameter");
+                                     break;
                                     }
                             }
                             break;
@@ -150,7 +139,7 @@ namespace Order_System
                     case 5:
                         {
                             Console.WriteLine("Menu:[5] Report");
-                            Console.WriteLine("Menu:[5]  [1] All Client Report; [2] All unpaid orders Report");
+                            Console.WriteLine("Menu:[5]  [1] All Clients Report; [2] All unpaid orders Report");
                             int reportAction = int.Parse(Console.ReadLine());
                             break;
                         }
