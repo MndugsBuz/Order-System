@@ -42,9 +42,8 @@ namespace Order_System
                                     customerRepository.AddCustomer();
                                     break;
                                 case 2:
-                                    Console.WriteLine("[2] Enter Customer Id to Delete");
-                                    string customerIdDelete = (Console.ReadLine());
-                                    break;
+                                    customerRepository.DeteleCustomer();
+                                                                        break;
                                 default:
                                     {
                                     Console.WriteLine("Choosen wrong parameter");
@@ -81,15 +80,12 @@ namespace Order_System
                             Console.WriteLine("Menu:[3] Order Item");
                             Console.WriteLine("Menu:[3] [1] New Order Item; [2] Delete Order Item");
                             int orderItemAction = int.Parse(Console.ReadLine());
+                            OrderItemRepository orderItemRepository = new OrderItemRepository();
                             switch (orderItemAction)
                             {
                                 case 1:
-                                    Console.WriteLine("[1] Order Number");
-                                    int orderNumber = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[2] Product Id");
-                                    int productId = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[3] Quantity");
-                                    decimal quantity = decimal.Parse(Console.ReadLine());
+
+                                    orderItemRepository.AddOrder();
                                     break;
                                 case 2:
                                     Console.WriteLine("[2] Enter Order number to Delete");

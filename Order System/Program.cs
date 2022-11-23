@@ -11,9 +11,6 @@ using Order_System;
 
 Console.WriteLine("Orders System");
 
-OrdersRepository writeOrdersToJson = new OrdersRepository();
-var resultwrite = writeOrdersToJson.WriteToJson();
-
 OrdersRepository readOrdersFromJson = new OrdersRepository();
 var resultread = readOrdersFromJson.ReadFromJson();
 
@@ -21,8 +18,8 @@ InterfacePrint print = new InterfacePrint();
 print.menuOptions();
 print.menuControl();
 
-OrdersRepository writeOrdersToJson2 = new OrdersRepository();
-var resultwrite2 = writeOrdersToJson.WriteToJson();
+//OrdersRepository writeOrdersToJson = new OrdersRepository();
+//var resultwrite = writeOrdersToJson.WriteToJson();
 
 string orderdate = Console.ReadLine();
 

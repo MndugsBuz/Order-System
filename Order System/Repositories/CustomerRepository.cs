@@ -50,8 +50,21 @@ namespace Order_System.Repositories
 
         public List<Customer> DeteleCustomer()
         {
+            Console.WriteLine("[2] Enter Customer number to Delete");
+            int customernumberDelete = int.Parse(Console.ReadLine());
+            customers.RemoveAt(customernumberDelete - 1);
+
+            foreach (var items in customers)
+            {
+                Console.Write(items.CustomerId + "|");
+                Console.Write(items.CustomerName + "|");
+                Console.Write(items.CustomerPaymentAmount + "|");
+                Console.Write(items.CustomerPaymentConditions + "|RemoveCustomer");
+                Console.WriteLine();
+            }
             return customers;
         }
+              
     }
 
 }

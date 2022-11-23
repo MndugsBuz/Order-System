@@ -21,5 +21,27 @@ namespace Order_System.Repositories
           
         }
 
+        public List<Customer> AddOrderItem()
+        {
+            Console.WriteLine("[1] Order Number");
+            int orderNumber = int.Parse(Console.ReadLine());
+            Console.WriteLine("[2] Product Id");
+            string productId = Console.ReadLine();
+            Console.WriteLine("[3] Quantity");
+            decimal quantity = decimal.Parse(Console.ReadLine());
+            orderItems.Add(new OrderItem(orderNumber, productId, quantity));
+                       
+            return orderItems;
+        }
+
+        public List<Customer> DeteleCustomer()
+        {
+            Console.WriteLine("[2] Enter Customer number to Delete");
+            int customernumberDelete = int.Parse(Console.ReadLine());
+            orderItems.RemoveAt(customernumberDelete - 1);
+
+            return orderItems;
+        }
+
     }
 }

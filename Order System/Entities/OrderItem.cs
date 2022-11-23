@@ -16,7 +16,7 @@ namespace Order_System.Entities
         {
         }
 
-        public OrderItem(int number, string id, double quantity)
+        public OrderItem(int number, string id, decimal quantity)
         {
             this.OrderNumber = number;
             this.ProductId = id;    

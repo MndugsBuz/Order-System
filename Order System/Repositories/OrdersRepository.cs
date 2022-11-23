@@ -12,7 +12,7 @@ namespace Order_System.Repositories
     public class OrdersRepository
     {
        public List<Order> orders { get; set; } = new List<Order>();
-       public OrdersRepository ()
+      /* public OrdersRepository ()
         {
             orders.Add(new Order("F00001", 219128, "2022 09 15", 2000*1)); // 4 OrderAmount = OrderItem.Quantity * Product.Price
             orders.Add(new Order("F00002", 219228, "2022 10 11", 1000*2));
@@ -24,45 +24,33 @@ namespace Order_System.Repositories
         public List<Order> RetrieveList()
         {
             return orders;
-        }
+        } */
       
         public List<Order> WriteToJson()
         {
-            List<Order> writeOrders = new List<Order>();
+            //List<Order> orders = new List<Order>();
+             File.WriteAllText("C:/desktop ml/Renkuosi programuoti/Back-End C Sharp code/221017 code mb paskaita Basic_C#_exam/Order System/Order System/orders.json",
+             JsonConvert.SerializeObject(orders));
 
-            for (int i = 100; i < 105; i++)
-
-                writeOrders.Add(new Order()
-                {
-                    CustomerId = "F001" + i,
-                    OrderNumber = i,
-                    OrderDate = "2022 10 17",
-                    OrderAmount = 110 * i //OrderItem.Quantity * Product.Price,
-                });
-
-            //string writejson = JsonSerializer.SerializeObject(writeOrders);
-            File.WriteAllText("C:/desktop ml/Renkuosi programuoti/Back-End C Sharp code/221017 code mb paskaita Basic_C#_exam/Order System/Order System/orders.json",
-                JsonConvert.SerializeObject(writeOrders));
-
-            return writeOrders;
+            return orders;
         }
 
         public List<Order> ReadFromJson()
         {
-            List<Order> readOrders = new List<Order>();
+            //List<Order> orders = new List<Order>();
             string readjson = File.ReadAllText("C:\\desktop ml\\Renkuosi programuoti\\Back-End C Sharp code\\221017 code mb paskaita Basic_C#_exam\\Order System\\Order System\\orders.json");
-            readOrders = JsonConvert.DeserializeObject<List<Order>>(readjson);
+            orders = JsonConvert.DeserializeObject<List<Order>>(readjson);
 
-            foreach (var items in readOrders)
+            foreach (var items in orders)
             {
                 Console.Write(items.CustomerId + "|");
                 Console.Write(items.OrderNumber + "|");
                 Console.Write(items.OrderDate + "|");
-                Console.Write(items.OrderAmount + "|");
+                Console.Write(items.OrderAmount + "|read");
                 Console.WriteLine();
             }
 
-            return readOrders;
+            return orders;
         }
         public List<Order> AddOrder()
         {
