@@ -29,15 +29,17 @@ namespace Order_System
         
         public List<OrderReportItem> GenerateReportUnpaidOrders()
         {
-            List<Order> orders = ordersRepository.RetrieveList();
+           // List<Order> orders = ordersRepository.RetrieveList();
             List<Customer> retrieveCustomers = new List<Customer>();
             List<OrderItem> retrieveOderItems = new List<OrderItem>();
             List<OrderReportItem> reportItems = new List<OrderReportItem>();
 
-            foreach (var order in orders)
+           /* foreach (var order in orders)
             {
 
             }
+           */
+           
 
 
             reportItems.Add(new OrderReportItem()
