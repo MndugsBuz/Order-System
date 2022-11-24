@@ -31,7 +31,10 @@ namespace Order_System
             CustomerRepository customersRepository = new CustomerRepository();
             customersRepository.ReadFromJson();
             OrderItemRepository orderItemsRepository = new OrderItemRepository();
-            //orderItemsRepository.ReadFromJson();
+            orderItemsRepository.ReadFromJson();
+            ProductRepository productRepository = new ProductRepository();
+            productRepository.ReadFromJson();
+
 
             while (menuQuit)
             {
@@ -121,20 +124,13 @@ namespace Order_System
                             switch (productAction)
                             {
                                 case 1:
-                                    Console.WriteLine("[1] Product Id");
-                                    int productId = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[2] Product Name");
-                                    int productName = int.Parse(Console.ReadLine());
-                                    Console.WriteLine("[3] ProductDescription");
-                                    decimal productDescription = decimal.Parse(Console.ReadLine());
-                                    Console.WriteLine("[4] ProductPrice");
-                                    decimal productPrice = decimal.Parse(Console.ReadLine());
-                                    Console.WriteLine("[5] UnitOfMeasurement");
-                                    decimal balance = decimal.Parse(Console.ReadLine());
+                                    productRepository.AddProduct();
                                     break;
                                 case 2:
-                                    Console.WriteLine("[2] Enter Product Id to Delete");
-                                    string productIddetele = (Console.ReadLine());
+                                    productRepository.DeleteProduct();
+                                    break;
+                                case 3:
+                                    productRepository.PrintProducts();
                                     break;
                                 default:
                                     {
@@ -159,6 +155,7 @@ namespace Order_System
                             customersRepository.WriteToJson();
                             ordersRepository.WriteToJson();
                             orderItemsRepository.WriteToJson();
+                            productRepository.WriteToJson();
                             break;
                         }
 
