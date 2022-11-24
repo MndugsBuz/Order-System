@@ -9,7 +9,7 @@ namespace Order_System.Entities
     public class Order
     { 
         public string CustomerId { get; set; }  
-        public int OrderNumber { get; set; }    
+        public string OrderNumber { get; set; }    
         public string OrderDate { get; set; }
         public double OrderAmount { get; set; }
         private List<Order> orders { get; set; }
@@ -18,7 +18,7 @@ namespace Order_System.Entities
         {
         }
 
-        public Order(string id, int number, string date, double amount)
+        public Order(string id, string number, string date, double amount)
         {
             this.CustomerId = id;
             this.OrderNumber = number;  

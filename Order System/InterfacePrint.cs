@@ -64,17 +64,12 @@ namespace Order_System
                             switch (orderAction)
                             {
                                 case 1:
-                                   
                                     ordersRepository.AddOrder();
-                                   // ordersRepository.WriteToJson();
                                     break;
                                 case 2:
-                                   
                                     ordersRepository.DeleteOrder();
-                                    //ordersRepository.WriteToJson();
                                     break;
                                 case 3:
-                                    // List current orders
                                     ordersRepository.PrintOrders();
                                     break;
                                 default:
@@ -85,6 +80,7 @@ namespace Order_System
                             }
                             break;
                             
+
                         }
                     case 3:
                         {
@@ -154,6 +150,7 @@ namespace Order_System
                         {
                             Console.WriteLine("Menu:[6] Quit the program");
                             menuQuit = false;
+                            ordersRepository.WriteToJson();
                             break;
                         }
 

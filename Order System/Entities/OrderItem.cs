@@ -8,7 +8,7 @@ namespace Order_System.Entities
 {
     public class OrderItem
     {
-        public int OrderNumber { get; set; } 
+        public string OrderNumber { get; set; } 
         public string ProductId { get; set; }   
         public decimal Quantity { get; set; }
 
@@ -16,7 +16,7 @@ namespace Order_System.Entities
         {
         }
 
-        public OrderItem(int number, string id, decimal quantity)
+        public OrderItem(string number, string id, decimal quantity)
         {
             this.OrderNumber = number;
             this.ProductId = id;    

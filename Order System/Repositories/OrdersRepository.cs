@@ -30,6 +30,7 @@ namespace Order_System.Repositories
         {
             File.WriteAllText("C:/desktop ml/Renkuosi programuoti/Back-End C Sharp code/221017 code mb paskaita Basic_C#_exam/Order System/Order System/orders.json",
             JsonConvert.SerializeObject(orders));
+            Console.WriteLine("Data writed to JSON file");
 
             return orders;
         }
@@ -63,7 +64,7 @@ namespace Order_System.Repositories
             Console.WriteLine("[1] Customer Id");
             string customerId = Console.ReadLine();
             Console.WriteLine("[2] Order Number");
-            int orderNumber = int.Parse(Console.ReadLine());
+            string orderNumber = Console.ReadLine();
             Console.WriteLine("[3] Order date (format yyyy mm dd)");
             string orderdate = Console.ReadLine();
             Console.WriteLine("[4] Order Amount (format 10,00)");
@@ -76,8 +77,18 @@ namespace Order_System.Repositories
         public List<Order> DeleteOrder()
         {
             Console.WriteLine("[2] Enter Order number to Delete");
-            int ordernumberDelete = int.Parse(Console.ReadLine());
-            orders.RemoveAt(ordernumberDelete - 1);
+            string ordernumbertoDelete = Console.ReadLine();
+            foreach (var item in orders)
+            {
+                if (item.OrderNumber == ordernumbertoDelete)
+                {
+                    orders.Remove(item.OrderNumber);
+                }
+
+                //orders.RemoveAt(ordernumberDelete - 1);
+
+            }
+            
             return orders;
         }
     }
