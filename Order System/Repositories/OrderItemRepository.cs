@@ -21,7 +21,7 @@ namespace Order_System.Repositories
           
         }
 
-        public List<Customer> AddOrderItem()
+        public List<OrderItem> AddOrderItem()
         {
             Console.WriteLine("[1] Order Number");
             int orderNumber = int.Parse(Console.ReadLine());
@@ -34,7 +34,7 @@ namespace Order_System.Repositories
             return orderItems;
         }
 
-        public List<Customer> DeteleCustomer()
+        public List<OrderItem> DeteleCustomer()
         {
             Console.WriteLine("[2] Enter Customer number to Delete");
             int customernumberDelete = int.Parse(Console.ReadLine());

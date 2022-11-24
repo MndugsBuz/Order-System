@@ -26,6 +26,10 @@ namespace Order_System
             int menuOption = int.Parse(Console.ReadLine());
             bool menuQuit = true;
 
+            // Read list of orders from JSON file
+            OrdersRepository ordersRepository = new OrdersRepository();
+            ordersRepository.ReadFromJson();
+
             while (menuQuit)
             {
                 switch (menuOption)
@@ -55,16 +59,23 @@ namespace Order_System
                     case 2:
                         {
                             Console.WriteLine("Menu:[2] Order");
-                            Console.WriteLine("Menu:[2] [1] New Order; [2] Delete Order");
+                            Console.WriteLine("Menu:[2] [1] New Order; [2] Delete Order [3] List current orders");
                             int orderAction = int.Parse(Console.ReadLine());
-                            OrdersRepository ordersRepository = new OrdersRepository();
                             switch (orderAction)
                             {
                                 case 1:
-                                     ordersRepository.AddOrder();
-                                     break;
+                                    // Add order and update JSON file
+                                    ordersRepository.AddOrder();
+                                    ordersRepository.WriteToJson();
+                                    break;
                                 case 2:
-                                     ordersRepository.DeleteOrder();
+                                    // Delete order and update JSON file
+                                    ordersRepository.DeleteOrder();
+                                    ordersRepository.WriteToJson();
+                                    break;
+                                case 3:
+                                    // List current orders
+                                    ordersRepository.PrintOrders();
                                     break;
                                 default:
                                     {
@@ -85,7 +96,7 @@ namespace Order_System
                             {
                                 case 1:
 
-                                    orderItemRepository.AddOrder();
+                                    orderItemRepository.AddOrderItem();
                                     break;
                                 case 2:
                                     Console.WriteLine("[2] Enter Order number to Delete");

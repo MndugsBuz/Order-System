@@ -11,46 +11,52 @@ namespace Order_System.Repositories
 {
     public class OrdersRepository
     {
-       public List<Order> orders { get; set; } = new List<Order>();
-      /* public OrdersRepository ()
-        {
-            orders.Add(new Order("F00001", 219128, "2022 09 15", 2000*1)); // 4 OrderAmount = OrderItem.Quantity * Product.Price
-            orders.Add(new Order("F00002", 219228, "2022 10 11", 1000*2));
-            orders.Add(new Order("134010201", 219598, "2022 09 28", 2000*1));
-            orders.Add(new Order("134030402", 219458, "2022 09 20", 3000*1));
-            orders.Add(new Order("134050603", 219396, "2022 09 29", 4000*1)); 
-        }
+        public List<Order> orders { get; set; } = new List<Order>();
+        /* public OrdersRepository ()
+          {
+              orders.Add(new Order("F00001", 219128, "2022 09 15", 2000*1)); // 4 OrderAmount = OrderItem.Quantity * Product.Price
+              orders.Add(new Order("F00002", 219228, "2022 10 11", 1000*2));
+              orders.Add(new Order("134010201", 219598, "2022 09 28", 2000*1));
+              orders.Add(new Order("134030402", 219458, "2022 09 20", 3000*1));
+              orders.Add(new Order("134050603", 219396, "2022 09 29", 4000*1)); 
+          }
 
-        public List<Order> RetrieveList()
-        {
-            return orders;
-        } */
-      
+          public List<Order> RetrieveList()
+          {
+              return orders;
+          } */
+
         public List<Order> WriteToJson()
         {
-            //List<Order> orders = new List<Order>();
-             File.WriteAllText("C:/desktop ml/Renkuosi programuoti/Back-End C Sharp code/221017 code mb paskaita Basic_C#_exam/Order System/Order System/orders.json",
-             JsonConvert.SerializeObject(orders));
+            File.WriteAllText("C:/desktop ml/Renkuosi programuoti/Back-End C Sharp code/221017 code mb paskaita Basic_C#_exam/Order System/Order System/orders.json",
+            JsonConvert.SerializeObject(orders));
 
             return orders;
         }
 
         public List<Order> ReadFromJson()
         {
-            //List<Order> orders = new List<Order>();
             string readjson = File.ReadAllText("C:\\desktop ml\\Renkuosi programuoti\\Back-End C Sharp code\\221017 code mb paskaita Basic_C#_exam\\Order System\\Order System\\orders.json");
             orders = JsonConvert.DeserializeObject<List<Order>>(readjson);
 
+            return orders;
+        }
+
+        public void PrintOrders()
+        {
+            Console.WriteLine("Orders:");
+            int index = 1;
             foreach (var items in orders)
             {
+                Console.Write(index + ". ");
                 Console.Write(items.CustomerId + "|");
                 Console.Write(items.OrderNumber + "|");
                 Console.Write(items.OrderDate + "|");
-                Console.Write(items.OrderAmount + "|read");
+                Console.Write(items.OrderAmount + "|");
                 Console.WriteLine();
+                index++;
             }
-
-            return orders;
+            Console.WriteLine();
         }
         public List<Order> AddOrder()
         {
@@ -65,31 +71,13 @@ namespace Order_System.Repositories
 
             orders.Add(new Order(customerId, orderNumber, orderdate, orderAmount));
 
-            foreach (var items in orders)
-            {
-                Console.Write(items.CustomerId + "|");
-                Console.Write(items.OrderNumber + "|");
-                Console.Write(items.OrderDate + "|");
-                Console.Write(items.OrderAmount + "|ADD");
-                Console.WriteLine();
-            }
-            return orders; 
+            return orders;
         }
         public List<Order> DeleteOrder()
         {
-
             Console.WriteLine("[2] Enter Order number to Delete");
             int ordernumberDelete = int.Parse(Console.ReadLine());
             orders.RemoveAt(ordernumberDelete - 1);
-
-            foreach (var items in orders)
-            {
-                Console.Write(items.CustomerId + "|");
-                Console.Write(items.OrderNumber + "|");
-                Console.Write(items.OrderDate + "|");
-                Console.Write(items.OrderAmount + "|Remove");
-                Console.WriteLine();
-            }
             return orders;
         }
     }

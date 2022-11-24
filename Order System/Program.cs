@@ -11,17 +11,11 @@ using Order_System;
 
 Console.WriteLine("Orders System");
 
-OrdersRepository readOrdersFromJson = new OrdersRepository();
-var resultread = readOrdersFromJson.ReadFromJson();
-
 InterfacePrint print = new InterfacePrint();
 print.menuOptions();
 print.menuControl();
 
-//OrdersRepository writeOrdersToJson = new OrdersRepository();
-//var resultwrite = writeOrdersToJson.WriteToJson();
 
-string orderdate = Console.ReadLine();
 
 
 
