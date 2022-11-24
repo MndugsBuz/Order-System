@@ -26,11 +26,12 @@ namespace Order_System
             int menuOption = int.Parse(Console.ReadLine());
             bool menuQuit = true;
 
-            // Read list of orders from JSON file
             OrdersRepository ordersRepository = new OrdersRepository();
             ordersRepository.ReadFromJson();
             CustomerRepository customersRepository = new CustomerRepository();
-            //customersRepository.ReadFromJson();
+            customersRepository.ReadFromJson();
+            OrderItemRepository orderItemsRepository = new OrderItemRepository();
+            //orderItemsRepository.ReadFromJson();
 
             while (menuQuit)
             {
@@ -84,24 +85,24 @@ namespace Order_System
                                     }
                             }
                             break;
-                            
-
+                        
                         }
                     case 3:
                         {
                             Console.WriteLine("Menu:[3] Order Item");
-                            Console.WriteLine("Menu:[3] [1] New Order Item; [2] Delete Order Item");
+                            Console.WriteLine("Menu:[3] [1] New Order Item; [2] Delete Order Item [3] List current order Items");
                             int orderItemAction = int.Parse(Console.ReadLine());
-                            OrderItemRepository orderItemRepository = new OrderItemRepository();
+                            
                             switch (orderItemAction)
                             {
                                 case 1:
-
-                                    orderItemRepository.AddOrderItem();
+                                    orderItemsRepository.AddOrderItem();
                                     break;
                                 case 2:
-                                    Console.WriteLine("[2] Enter Order number to Delete");
-                                    string ordernumberDelete = (Console.ReadLine());
+                                    orderItemsRepository.DeleteOrderItem();
+                                    break;
+                                case 3:
+                                    orderItemsRepository.PrintOrderItems();
                                     break;
                                 default:
                                     {
@@ -155,8 +156,9 @@ namespace Order_System
                         {
                             Console.WriteLine("Menu:[6] Quit the program");
                             menuQuit = false;
-                            ordersRepository.WriteToJson();
                             customersRepository.WriteToJson();
+                            ordersRepository.WriteToJson();
+                            orderItemsRepository.WriteToJson();
                             break;
                         }
 
