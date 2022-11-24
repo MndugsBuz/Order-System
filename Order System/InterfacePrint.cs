@@ -64,14 +64,14 @@ namespace Order_System
                             switch (orderAction)
                             {
                                 case 1:
-                                    // Add order and update JSON file
+                                   
                                     ordersRepository.AddOrder();
-                                    ordersRepository.WriteToJson();
+                                   // ordersRepository.WriteToJson();
                                     break;
                                 case 2:
-                                    // Delete order and update JSON file
+                                   
                                     ordersRepository.DeleteOrder();
-                                    ordersRepository.WriteToJson();
+                                    //ordersRepository.WriteToJson();
                                     break;
                                 case 3:
                                     // List current orders
