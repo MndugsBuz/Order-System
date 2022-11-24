@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Order_System.Entities;
 
 namespace Order_System.Repositories
@@ -25,6 +26,23 @@ namespace Order_System.Repositories
             return customers;
         }
 
+        public List<Customer> WriteToJson()
+        {
+            File.WriteAllText("C:/desktop ml/Renkuosi programuoti/Back-End C Sharp code/221017 code mb paskaita Basic_C#_exam/Order System/Order System/customers.json",
+            JsonConvert.SerializeObject(customers));
+            Console.WriteLine("Customers writed to JSON file");
+
+            return customers;
+        }
+
+        public List<Customer> ReadFromJson()
+        {
+            string readjson = File.ReadAllText("C:\\desktop ml\\Renkuosi programuoti\\Back-End C Sharp code\\221017 code mb paskaita Basic_C#_exam\\Order System\\Order System\\customers.json");
+            customers = JsonConvert.DeserializeObject<List<Customer>>(readjson);
+
+            return customers;
+        }
+
         public List<Customer> AddCustomer()
         {
             Console.WriteLine("[1] Customer Id");
@@ -37,34 +55,43 @@ namespace Order_System.Repositories
             int customerPaymentConditions = int.Parse(Console.ReadLine());
             customers.Add(new Customer(customerId, customerName, customerPaymentAmount, customerPaymentConditions));
 
-            foreach (var items in customers)
-            {
-                Console.Write(items.CustomerId + "|");
-                Console.Write(items.CustomerName + "|");
-                Console.Write(items.CustomerPaymentAmount + "|");
-                Console.Write(items.CustomerPaymentConditions + "|ADDCustomer");
-                Console.WriteLine();
-            }
             return customers;
         }
 
         public List<Customer> DeteleCustomer()
         {
-            Console.WriteLine("[2] Enter Customer number to Delete");
-          //  int customernumberDelete = int.Parse(Console.ReadLine());
-          //  customers.RemoveAt(customernumberDelete - 1);
-
-            foreach (var items in customers)
+            Console.WriteLine("[2] Enter Customer name to Delete");
+            string customernumbertoDelete = Console.ReadLine();
+            foreach (var item in customers)
             {
-                Console.Write(items.CustomerId + "|");
-                Console.Write(items.CustomerName + "|");
-                Console.Write(items.CustomerPaymentAmount + "|");
-                Console.Write(items.CustomerPaymentConditions + "|RemoveCustomer");
-                Console.WriteLine();
+
+                if (item.CustomerName == customernumbertoDelete)
+                {
+                    Console.WriteLine("Removing order with number: " + item.CustomerName);
+                    customers.Remove(item);
+                    break;
+                }
             }
             return customers;
         }
-              
+
+        public void PrintCustomers()
+        {
+            Console.WriteLine("Customers:");
+            int index = 1;
+            foreach (var items in customers)
+            {
+                Console.Write(index + ". ");
+                Console.Write(items.CustomerId + "|");
+                Console.Write(items.CustomerName + "|");
+                Console.Write(items.CustomerPaymentAmount + "|");
+                Console.Write(items.CustomerPaymentConditions + "|");
+                Console.WriteLine();
+                index++;
+            }
+            Console.WriteLine();
+        }
+
     }
 
 }

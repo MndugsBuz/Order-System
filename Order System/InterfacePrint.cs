@@ -29,6 +29,8 @@ namespace Order_System
             // Read list of orders from JSON file
             OrdersRepository ordersRepository = new OrdersRepository();
             ordersRepository.ReadFromJson();
+            CustomerRepository customersRepository = new CustomerRepository();
+            //customersRepository.ReadFromJson();
 
             while (menuQuit)
             {
@@ -37,17 +39,20 @@ namespace Order_System
                     case 1:
                         {
                             Console.WriteLine("Menu:[1] Customer");
-                            Console.WriteLine("Menu:[1] [1] New Customer; [2] Delete Customer");
+                            Console.WriteLine("Menu:[1] [1] New Customer; [2] Delete Customer; [3] List current customers");
                             int customerAction = int.Parse(Console.ReadLine());
-                            CustomerRepository customerRepository = new CustomerRepository();
+                            
                             switch (customerAction)
                             {
                                 case 1:
-                                    customerRepository.AddCustomer();
+                                    customersRepository.AddCustomer();
                                     break;
                                 case 2:
-                                    customerRepository.DeteleCustomer();
-                                                                        break;
+                                    customersRepository.DeteleCustomer();
+                                    break;
+                                case 3:
+                                    customersRepository.PrintCustomers();
+                                    break;
                                 default:
                                     {
                                     Console.WriteLine("Choosen wrong parameter");
@@ -151,6 +156,7 @@ namespace Order_System
                             Console.WriteLine("Menu:[6] Quit the program");
                             menuQuit = false;
                             ordersRepository.WriteToJson();
+                            customersRepository.WriteToJson();
                             break;
                         }
 
